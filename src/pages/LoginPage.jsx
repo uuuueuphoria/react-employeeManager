@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+  useReducer,
+} from 'react';
 import styled from 'styled-components';
-import fireBaseApp from './../firebase/fireConfig';
 import FormInput from './../components/forms/FormInput';
 import Button from './../components/buttons/Button';
 import firebaseApp from './../firebase/fireConfig';
+import { Redirect } from 'react-router-dom';
+
 const LoginPageStyles = styled.div`
   max-width: 480px;
   margin: 6rem auto 0;
@@ -21,30 +28,48 @@ const LoginPageStyles = styled.div`
 `;
 
 const LoginPage = () => {
+  //useState ---hook----functional approach to build components
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(false);
+
   const handleLogin = (e) => {
     //no this
     firebaseApp
       .auth()
-      .signInWithEmailAndPassword('wanlun@home.com', '123456ab')
+      .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log(userCredential.user.uid);
-        console.log(userCredential.user.email);
-        //redirect to the dashboard
+        //auth
+        setIsValid(true);
+        //redirect to the dashboard, use react router dom
+      })
+      .catch((error) => {
+        console.log(error.code, error.message);
+        setIsValid(false);
       });
   };
-  function xxx() {
-    //can use this
+  if (isValid) {
+    return <Redirect to="/dashboard" />;
+  } else {
+    return (
+      <LoginPageStyles>
+        <header>
+          <h1>Login to your Account</h1>
+        </header>
+        <FormInput
+          inputType="email"
+          label="enter email address"
+          onChange={(e) => setEmail(e.target.value.trim())}
+        />
+        <FormInput
+          inputType="password"
+          label="enter your password"
+          onChange={(e) => setPassword(e.target.value.trim())}
+        />
+        <Button onClick={handleLogin} label="Sign In" uiStyle="signup" />
+      </LoginPageStyles>
+    );
   }
-  return (
-    <LoginPageStyles>
-      <header>
-        <h1>Login to your Account</h1>
-      </header>
-      <FormInput inputType="email" label="enter email address" />
-      <FormInput inputType="password" label="enter your password" />
-      <Button onClick={handleLogin} label="Sign In" uiStyle="signup" />
-    </LoginPageStyles>
-  );
 };
 
 export default LoginPage;

@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom';
 
 const AppBarStyles = styled.nav`
   box-shadow: 0 0 3px 1px grey;
-  padding: 1rem;
+  position: relative;
+  z-index: 4;
+  background-color: inherit;
   ul {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 64px;
+    padding: 1rem;
   }
   li {
     margin: 0 1rem 0;
@@ -30,6 +35,9 @@ const AppBar = (props) => {
         </li>
         <li>
           <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
       </ul>
     </AppBarStyles>

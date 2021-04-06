@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PageNotFound from './pages/404';
+import Dashboard from './pages/dashboard/Dashboard';
 import AppBar from './components/appbar/AppBar';
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
         <Route path="*">
           <PageNotFound />
