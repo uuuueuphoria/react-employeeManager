@@ -1,15 +1,10 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import FormInput from './../components/forms/FormInput';
 import Button from './../components/buttons/Button';
 import firebaseApp from './../firebase/fireConfig';
 import { Redirect } from 'react-router-dom';
+import AuthContext, { AuthProvider } from './../auth/AuthContext';
 
 const LoginPageStyles = styled.div`
   max-width: 480px;
@@ -27,10 +22,11 @@ const LoginPageStyles = styled.div`
   }
 `;
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   //useState ---hook----functional approach to build components
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const value = useContext(AuthContext);
+  const [email, setEmail] = useState('wanlun@home.com');
+  const [password, setPassword] = useState('123456ab');
   const [isValid, setIsValid] = useState(false);
 
   const handleLogin = (e) => {
@@ -40,14 +36,19 @@ const LoginPage = () => {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         //auth
+        value.uid = userCredential.user.uid;
+        value.authenticated = true;
+        //value.authenticated = isValid;
         setIsValid(true);
         //redirect to the dashboard, use react router dom
       })
       .catch((error) => {
         console.log(error.code, error.message);
         setIsValid(false);
+        value.authenticated = isValid;
       });
   };
+
   if (isValid) {
     return <Redirect to="/dashboard" />;
   } else {

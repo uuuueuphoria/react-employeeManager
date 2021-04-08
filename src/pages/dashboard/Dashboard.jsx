@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AuthContext from '../../auth/AuthContext';
+import { Redirect } from 'react-router-dom';
 
 const DashBoardStyles = styled.section`
   display: flex;
@@ -35,23 +37,29 @@ const Panels = styled.section`
   width: calc(100% - 198px);
 `;
 const DashBoard = (props) => {
-  return (
-    <DashBoardStyles>
-      <SideBar>
-        <header>
-          <h1>Firebase App</h1>
-          <p>tagline goes here</p>
-        </header>
-        <ul>
-          <li>View All</li>
-          <li>CREATE</li>
-          <li>EDIT</li>
-          <li>DELETE</li>
-        </ul>
-      </SideBar>
-      <Panels></Panels>
-    </DashBoardStyles>
-  );
+  const auth = useContext(AuthContext);
+  console.log(auth);
+  if (auth.authenticated) {
+    return (
+      <DashBoardStyles>
+        <SideBar>
+          <header>
+            <h1>Firebase App</h1>
+            <p>tagline goes here</p>
+          </header>
+          <ul>
+            <li>View All</li>
+            <li>CREATE</li>
+            <li>EDIT</li>
+            <li>DELETE</li>
+          </ul>
+        </SideBar>
+        <Panels></Panels>
+      </DashBoardStyles>
+    );
+  } else {
+    return <Redirect to="/login" />;
+  }
 };
 
 export default DashBoard;

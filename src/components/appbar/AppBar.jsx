@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import firebaseApp from '../../firebase/fireConfig';
 
 const AppBarStyles = styled.nav`
   box-shadow: 0 0 3px 1px grey;
@@ -24,20 +25,26 @@ const AppBarStyles = styled.nav`
 `;
 
 const AppBar = (props) => {
+  const handleLogOut = () => {
+    firebaseApp.auth().signOut();
+  };
   return (
     <AppBarStyles>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Employee Manager</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/login">Login</Link>
         </li>
         <li>
           <Link to="/register">Register</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <button onClick={handleLogOut}>Sign Out</button>
         </li>
       </ul>
     </AppBarStyles>

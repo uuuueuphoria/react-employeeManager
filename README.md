@@ -2,11 +2,11 @@
 
 > Author: Wanlun Xue
 
-**Description of App:** This app is the react version of employee manager. This app is deployed on firebase. This app allow new user to register an account and authenticate existing users to login. If the login is successful, user will be directed to dashboard page.
+**Description of App:** This app is the react version of employee manager. This app is deployed on firebase. This app allow new user to register an account and authenticate existing users to login. If the login is successful, user will be directed to dashboard page. If the user successfully sign up for an account, user will be directed to login page.
 
 **What is used for:** It allows user sign up and login.
 
-**How to use it:** User can choose either sign up or login. The login credentials are: username: wanlun@home.com, password: 123456ab
+**How to use it:** User can choose either sign up or login. The existing credentials are: username: wanlun@home.com, password: 123456ab and username: euphoria@home.com, password: 123456ab
 
 **How to install app:** type "npm install" in terminal
 
