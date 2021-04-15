@@ -2,11 +2,11 @@
 
 > Author: Wanlun Xue
 
-**Description of App:** This app is the react version of employee manager. This app is deployed on firebase. This app allow new user to register an account and authenticate existing users to login. If the login is successful, user will be directed to dashboard page. If the user successfully sign up for an account, user will be directed to login page.
+**Description of App:** This app is the react version of employee manager. This app is deployed on firebase and use firestore as database. This app allow new user to register an account and authenticate existing users to login. If the login is successful, user will be directed to dashboard page. If the user successfully sign up for an account, user will be directed to login page. User and add employees to the database on dashboard page and all the employees are displayed on dashboard page too.
 
-**What is used for:** It allows user sign up and login.
+**What is used for:** It allows signed-in users to view and add employees.
 
-**How to use it:** User can choose either sign up or login. The existing credentials are: username: wanlun@home.com, password: 123456ab and username: euphoria@home.com, password: 123456ab
+**How to use it:** User can choose either sign up or login. The existing credentials are: username: wanlun@home.com, password: 123456ab
 
 **How to install app:** type "npm install" in terminal
 
@@ -23,6 +23,8 @@
 - This project is built and deployed on firebase. To learn more about firebase: (https://firebase.google.com/)
 
 - This project is built using React, React is an open-source, front end, JavaScript library for building user interfaces or UI components. To learn more about React: (https://reactjs.org/)
+
+- This project use uuid to generate random id for each employee to be inserted into fire store. More info about uuid: (https://www.npmjs.com/package/uuidv4)
 
 **Link of working demo:** https://react-employee-manager-wanlun.web.app
 

@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useRouteMatch, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import AuthContext from '../../auth/AuthContext';
-import { Redirect } from 'react-router-dom';
+import ViewAll from './panels/ViewAll';
+import EditPanel from './panels/EditPanel';
+import CreatePanel from './panels/CreatePanel';
+import DeletePanel from './panels/DeletePanel';
 
 const DashBoardStyles = styled.section`
   display: flex;
@@ -38,7 +41,7 @@ const Panels = styled.section`
 `;
 const DashBoard = (props) => {
   const auth = useContext(AuthContext);
-  console.log(auth);
+  const { path, url } = useRouteMatch();
   if (auth.authenticated) {
     return (
       <DashBoardStyles>
@@ -48,13 +51,36 @@ const DashBoard = (props) => {
             <p>tagline goes here</p>
           </header>
           <ul>
-            <li>View All</li>
-            <li>CREATE</li>
-            <li>EDIT</li>
-            <li>DELETE</li>
+            <li>
+              <Link to={`${url}`}>View All</Link>
+            </li>
+            <li>
+              <Link to={`${url}/create`}>Create Content</Link>
+            </li>
+            <li>
+              <Link to={`${url}/edit`}>Edit Content</Link>
+            </li>
+            <li>
+              <Link to={`${url}/delete`}>Delete Content</Link>
+            </li>
           </ul>
         </SideBar>
-        <Panels></Panels>
+        <Panels>
+          <Switch>
+            <Route exact path={path}>
+              <ViewAll />
+            </Route>
+            <Route path={`${path}/create`}>
+              <CreatePanel />
+            </Route>
+            <Route path={`${path}/edit`}>
+              <EditPanel />
+            </Route>
+            <Route path={`${path}/delete`}>
+              <DeletePanel />
+            </Route>
+          </Switch>
+        </Panels>
       </DashBoardStyles>
     );
   } else {

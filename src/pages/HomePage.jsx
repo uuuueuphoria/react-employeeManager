@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from './../components/icon/Logo';
+import Logo from './../components/icons/Logo';
 import { Link } from 'react-router-dom';
 
 const HomePageStyles = styled.header`
