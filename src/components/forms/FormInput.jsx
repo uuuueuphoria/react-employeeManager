@@ -23,7 +23,12 @@ const FormInput = (props) => {
   return (
     <FormInputsStyles {...props}>
       <label htmlFor={props.id}>{props.label}</label>
-      <input type={props.inputType} name={props.name} id={props.id} />
+      <input
+        type={props.inputType}
+        name={props.name}
+        id={props.id}
+        value={props.value}
+      />
     </FormInputsStyles>
   );
 };
