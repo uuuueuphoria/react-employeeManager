@@ -60,11 +60,13 @@ const LoginPage = (props) => {
         <FormInput
           inputType="email"
           label="enter email address"
+          value={email}
           onChange={(e) => setEmail(e.target.value.trim())}
         />
         <FormInput
           inputType="password"
           label="enter your password"
+          value={password}
           onChange={(e) => setPassword(e.target.value.trim())}
         />
         <Button onClick={handleLogin} label="Sign In" uiStyle="signup" />
